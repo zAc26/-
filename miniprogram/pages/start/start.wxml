@@ -1,0 +1,25 @@
+<!--start.wxml-->
+<view class="container">
+      <view class="remind-box" wx:if="{{remind}}">
+        <image class="remind-img" src="/static/images/more/loading.gif"></image>
+      </view>
+    <block wx:else>
+      <image class="title" src="/static/images/more/title8.png"></image>
+      <view class="content">
+          <view class="hd" style="transform:rotateZ({{angle}}deg);">
+            <image class="logo" src="{{userInfo.avatarUrl}}"></image>
+            <image class="wave" src="/static/images/more/wave.png" mode="aspectFill"></image>
+            <image class="wave wave-bg" src="/static/images/more/wave.png" mode="aspectFill"></image>
+          </view>
+        <view class="bd">
+             <image class="smalltitle" src="/static/images/more/confirm-word1.png"></image>
+              <view  bindtap="onGetOpenid" >
+                  <button class="confirm-btn" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" loading="{{isLoading}}" hover-start-time="200" disabled="{{isdisabled}}">
+                    <text  >立即体验</text> 
+                 </button>
+              </view>
+              <text class="copyright">© 2019 江西农业大学HalfMoon工作室 出品</text>
+        </view>
+      </view>
+    </block>
+</view>

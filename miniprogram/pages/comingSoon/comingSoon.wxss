@@ -1,0 +1,26 @@
+/* pages/comingSoon/comingSoon.wxss */
+.comingSoon{
+  position: absolute;
+  left: 45%;
+  top:33%;
+  width: 50vw;
+  height: 120rpx;
+}
+.comingSoon  image{
+  width: 120rpx;
+  height: 120rpx;
+  align-items: center;
+}
+.comingSoon  view{
+  width: 50vw;
+  height:  10vw;
+  align-items: center;
+}
+ .view2{
+  
+ font-size: 25px;
+  position: absolute;
+  left: 35%;
+  top:50%;
+
+}

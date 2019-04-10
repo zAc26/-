@@ -1,0 +1,106 @@
+<!-- 新建活动 -->
+<view class="add-page">
+  <form bindsubmit="submitForm">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{TopTips}}</view>
+    <view class="mod-a">
+      <!-- 姓名-->
+      <view class="mod t-name">
+        <text class="key">姓名</text>
+        <input name="name" class="input" maxlength="100" placeholder="请输入姓名" value="{{title}}" />
+        <image class="arrow-r" src="/static/images/arrow-r-0.png"></image>
+      </view>
+    </view>
+
+    <view class="mod-a mt20">
+      <!-- 学院 -->
+      <view class="mod t-sign-time">
+        <text class="key">学院</text>
+        <picker bindchange="bindTypeChange"  value="{{typeIndex}}" range="{{college}}">
+          <view class="value" name="college" >{{college[typeIndex]}}
+            <image class="arrow-r" src="/static/images/arrow-r-0.png"></image>
+          </view>
+        </picker>
+      </view>
+
+        <!-- 班级 -->
+      <view class="mod t-name"  wx:if="{{!isTeacher}}">
+        <text class="key">班级</text>
+        <input name="cla" class="input" type='number'  maxlength="100" placeholder="请输入班级" value="{{title}}"   bindblur='addCla'  />
+        <image class="arrow-r" src="/static/images/arrow-r-0.png"></image>
+      </view>
+
+      <!-- 学号 -->
+      <view class="mod t-name" >
+        <text class="key">  {{!isTeacher ? '学号' :'教工号' }}</text>
+        <input name="sno" class="input" type='number'  maxlength="100" placeholder="请输入{{!isTeacher ? '学号' :'教工号' }}" value="{{title}}" />
+        <image class="arrow-r" src="/static/images/arrow-r-0.png"></image>
+      </view>
+
+ 
+
+      <!-- 是否教师 -->
+      <view class="mod  t-early">
+        <text class="key">是否教师</text>
+        <switch type="switch" bindchange="switch1Change" name="switchHide" />
+      </view>
+
+  
+    </view>
+
+  
+    
+  
+  
+
+    <view class="mod-a mt20">
+      <checkbox-group bindchange="bindAgreeChange">
+        <label class="weui-agree" for="weuiAgree">
+          <view class="weui-agree__text">
+            <checkbox class="weui-agree__checkbox" id="weuiAgree" value="agree" checked="{{isAgree}}" />
+            <view class="weui-agree__checkbox-icon">
+              <icon class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" wx:if="{{isAgree}}"></icon>
+            </view>
+            阅读并同意
+            <view bindtap="showNotice" class="weui-agree__link">
+              《用户须知》</view>
+          </view>
+        </label>
+      </checkbox-group>
+      <view class="submit-btn">
+        <button class='button' loading="{{isLoading}}" hover-start-time="200" disabled="{{isdisabled}}" formType="submit">立即注册</button>
+      </view>
+    </view>
+  </form>
+</view>
+
+<view class="notice" id="notice" wx:if="{{notice_status}}" bindtap="tapNotice">
+        <view class="box">
+          <view class="box-hd">
+            <text class="box-title">用户须知</text>
+            <image class="box-close" src="/static/images/more/close.png" bindtap="hideNotice"></image>
+          </view>
+          <view class="box-bd">
+            <view class="notice-q">1、请务必如实填写真实姓名信息</view>
+            <view class="notice-a">
+              <text>本小程序用于课堂在线签到与课堂管理，填写真实姓名便于教师管理。</text>
+            </view>
+            <view class="notice-q">2、填写虚假信息会怎样</view>
+            <view class="notice-a">
+              <text>利用虚假信息进行注册，一经发现，封号处理</text>
+            </view>
+
+              <view class="notice-q">3、请务必保证班级信息正确</view>
+            <view class="notice-a">
+              <text>必修课信息只能通过班级信息绑定，无法自行添加，请务必保证班级信息正确</text>
+            </view>
+
+            <view class="notice-q">4、账号绑定说明</view>
+            <view class="notice-a">
+              <text>本小程序默认绑定注册账号，一经注册，无法修改！请确认使用本人的微信账号！</text>
+              <text>   </text>
+            </view>
+
+          </view>   
+          </view>
+        
+      </view>

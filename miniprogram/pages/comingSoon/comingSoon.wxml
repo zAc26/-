@@ -1,0 +1,9 @@
+<!--pages/comingSoon/comingSoon.wxml-->
+
+<view class='comingSoon'>
+    <image  src='/static/images/comingSoon.png'></image>
+    <view>施工中</view>
+
+</view>
+    <view class='view2'>敬请期待</view>
+

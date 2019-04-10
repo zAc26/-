@@ -1,0 +1,88 @@
+<!--start.wxml-->
+<view class="container">
+    <view class="content">
+      <view class="hd" style="transform:rotateZ({{angle}}deg);">
+        <image class="logo" src="{{userInfo.avatarUrl}}"></image>
+        <image class="wave" src="/static/images/more/wave.png" mode="aspectFill"></image>
+        <image class="wave wave-bg" src="/static/images/more/wave.png" mode="aspectFill"></image>
+      </view>
+
+
+
+
+
+ <navigator url="/pages/comingSoon/comingSoon">  <!-- tempppppppppp -->
+<!-- 功能模块第一部分 -->
+<view class='content-body'>
+
+  <!-- 我的课件库 -->
+  <view class='coupon content-view' bindtap='coupon'>
+    <image class='member-icon' src='/static/images/sliders.png'></image>
+    <text class='member-text'>我的课件库</text>
+  </view>
+  <!-- 我的试卷库 -->
+   <view class='content-view'  bindtap='withdrawCash'>
+    <image class='member-icon'src='/static/images/quizzes.png'></image>
+    <text class='member-text'>我的试卷库</text>
+  </view>
+   
+  <!-- 我的收藏 -->
+  <view class='content-view'  bindtap='cart'>
+    <image class='member-icon'src='/static/images/collection.png'></image>
+    <text class='member-text'>我的收藏</text>
+  </view>
+</view>
+
+
+               
+                    <!-- 分割线 -->
+                  <view class="divLine2"></view>
+               
+
+<!-- 功能模块第二部分 -->
+<view class='content-two content-body'>
+
+                      
+  <!-- 身份绑定 -->
+  <view class='content-view' bindtap='attention'>
+    <image class='member-icon' src='/static/images/id_bind.png'></image>
+    <text class='member-text'>身份绑定</text>
+  </view>
+                   
+  <!-- 绑定手机 -->
+  <view class='content-view' bindtap='browsingHistory'>
+    <image class='member-icon' src='/static/images/bindphone.png'></image>
+    <text class='member-text'>绑定手机</text>
+  </view>
+</view>
+
+                              
+                                        <!-- 分割线 -->
+                                      <view class="divLine2"></view>
+                                    
+
+<view class='content-two content-body'>
+  <!-- 联系开发 -->
+  <view class='content-view' bindtap='invite'>
+    <image class='member-icon' src='/static/images/contact.png'></image>
+    <text class='member-text'>联系开发</text>
+  </view>             
+  <!-- 帮助 -->
+  <view class='content-view' bindtap='recommendlist'>
+    <image class='member-icon' src='/static/images/help-center.png'></image>
+    <text class='member-text'>帮助</text>
+  </view>
+
+</view>
+
+       </navigator>   <!-- tempppppppppp -->
+
+    </view>
+
+
+
+
+
+
+
+</view>

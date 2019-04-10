@@ -1,0 +1,43 @@
+<!--pages/course/course.wxml-->
+
+ <view  class='top'>
+
+           <view class="sign"  bindtap='signIn' wx:if="{{isSigning&&!isSign}}">
+              <image class="image" src="../../static/icons/sign.png"></image>
+              <view style="margin-top:2px;">立即签到</view>
+          </view>
+
+            <view class="sign"   wx:if="{{!isSigning&&!isSign}}" >
+                <image class="image" src="../../static/icons/unsign.png"></image>
+                <view style="margin-top:2px;">暂未发起</view>
+            </view>
+
+           <view class="sign"   wx:if="{{isSigning&&isSign}}">
+              <image class="image"  src="../../static/icons/isSign.png"></image>
+              <view style="margin-top:2px;">签到成功</view>
+           </view> 
+ </view>
+
+<!-- ################################################################################################### -->
+ <!-- <view  class='top'>
+ </view> -->
+
+<!--底部菜单 ################################################################################################### -->
+<view class='buttom'>
+   <view class='header'> 
+    <view class="tablist">
+      <view wx:for="{{tabs}}" wx:for-index="idx" class="tab" bindtap="touchTab" style="{{item.extraStyle}}" id="{{idx}}">
+        <view class="content" style="color:{{highLightIndex == idx ? '#54BFE2' : ''}};">
+          <image class="image" mode="aspectFit" src="{{highLightIndex == idx ? item.iconActive : item.icon}}"></image>
+          <view style="margin-top:2px;">{{item.title}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+   
+
+
+<!-- 出错提示 -->
+<view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{TopTips}}</view>
+  

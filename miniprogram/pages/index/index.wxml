@@ -1,0 +1,168 @@
+<!--index.wxml-->
+
+
+
+<view class="mpage {{!ui.tStart? 'withAnimate': ''}}" style="left:{{ui.offsetLeft}}px;width: {{ui.windowWidth}}px;" bindtouchstart="handlerStart" catchtouchmove="handlerMove"  bindtouchcancel="handlerCancel" bindtouchend="handlerEnd" bindtap="handlerPageTap">
+  <scroll-view bindscroll="" scroll-y style="height: 100%;">
+
+
+    <view class="search">
+      <view catchtap="handlerAvatarTap" class="avatar">
+        <image src="{{userInfo.avatarUrl}}"></image>
+      </view>
+      <view class="search-wrapper {{show_search_back?'search-wrapper-blue':''}}">
+        <view class="search-button" bindtap="search">
+          <view class="iconfont icon-sousuo"></view>
+            搜索班课
+        </view>
+      </view>
+      <view wx:if="{{power<=1}}" bindtap='addClass' class="avatar_r">
+        <image src="/static/images/jia.png"></image>
+      </view>
+    </view>
+
+     <!-- 资源部 --> 
+                          <navigator url="/pages/comingSoon/comingSoon">  <!-- tempppppppppp -->
+     <view class='button-list'>
+       <view class='button-list-mid'>
+         <view class='nav' bindtap='allCategories'><image src='/static/images/sliders.png'></image><text>课件库</text></view>
+          <view class='nav' bindtap='hotSale'><image   src='/static/images/quizzes.png'></image><text>试卷库</text></view>
+          <view class='nav' bindtap='myOrder'><image src='/static/images/collection.png'></image><text>收藏</text></view>
+        </view> 
+      </view>
+                      </navigator>   <!-- tempppppppppp -->
+
+   <!-- 头部导航 -->
+    <view class="header">
+        <scroll-view class="sv__container" scroll-x="true">
+            <block wx:for="{{categoryTabs}}" wx:key="id" >
+                <view 
+                    class="sv__item {{ currentTab==item.id ? 'active':'' }}" 
+                    bindtap="changeCategory" 
+                    data-id="{{ item.id }}" >
+                    {{ item.name }}
+                </view>
+            </block>
+        </scroll-view>
+    </view>
+
+
+
+
+    <!-- 活动详情界面 -->
+    <view class="loadingmore">
+      <!-- <view wx:if="{{!isEmpty}}">
+        <button class="more-button" formType="submit" size="mini" bindtap="loadMore">加载更多...</button>
+      </view> -->
+      <view class="no-more" wx:if="{{courseListShow.length==0}}">{{todo}}</view>
+     <!-- ////////////////////////////////////////////////////////// -->
+     <view wx:else stytle=" overflow-x: hidden; overflow-y: auto; ">
+        <view  class="message_list">
+         
+          <block wx:for="{{courseListShow}}">
+              <!-- <navigator url="{{url}}?{{item._id}}"> -->
+              <view class="tr {{index % 2 == 0? 'bg-g':''}}">
+                <view class="item" bindtap='toCourse' id='{{index}}' >
+                  <view class="item-left">
+                        <image src="{{item.url}}" class="image"/>
+                  </view>
+                  <view class="item-middle">
+                        <view>
+                            <text class="title">《{{item.name}}》</text>
+                        </view>
+                        <view>
+                            <!-- <text class="message">{{item.content}}</text> -->
+                            <text class="message">讲师：{{item.createMan}}</text>
+                        </view>
+                  </view>
+                    <view class="item-middle2">
+                        <view>
+                            <text wx:if="{{item.isSigning}}" class="state">正在签到</text>
+                      
+                        </view>
+                  </view>
+                  <view class="item_right">
+                      <view><text class="time">{{item.uuid}}</text></view>
+                      <view class="mark" wx:if="{{item.count>0}}"><text class="text">{{item.count}}</text></view>
+                  </view>
+              </view>
+              <view  class="line"></view>
+            </view>
+            <!-- </navigator> -->
+          </block>
+        </view>
+    </view>
+     
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+
+
+
+    </view>
+    <tab-shadow/>
+
+  </scroll-view>
+</view>
+
+<!-- 侧滑栏 -->
+<view bindtouchstart="handlerStart" catchtouchmove="handlerMove" bindtouchcancel="handlerCancel" bindtouchend="handlerEnd" class="user" style="width: {{ui.menuWidth}}px">
+  <view style="width: {{ui.menuWidth}}px;left:{{-ui.menuWidth/3 + ui.offsetLeft/3}}px" class="user-box {{!ui.tStart? 'withAnimate': ''}}">
+    <view class="user-face-wrapper">
+      <image mode="aspectFill" src="/static/images/icon/backGround.gif" style="height: 150px" class="loginbg"></image>
+      <image class="user-face" src="{{userInfo.avatarUrl}}"></image>
+      <view class='user-info'>
+        <text> {{userDataBaseInfo.name}}</text>
+        <image wx:if="{{userInfo.gender == 1}}" src="/static/images/m3.png"></image>
+        <image wx:if="{{userInfo.gender == 2}}" src="/static/images/w3.png"></image>
+        <image wx:if="{{userInfo.gender == 0 || userInfo.gender==''}}" src="/static/images/sex.png"></image>
+      </view>
+    </view>
+    <view style='background-color: #fff;' class='bottom-box'>
+      <view class="list-box">
+        <view class="icon-text">
+          <span>学院</span>
+        </view>
+        <text class='claName'>{{college}}</text>
+      </view>
+      <view class="list-box " bindtap=" ">
+        <view class="icon-text ">
+          <span>班级</span>
+        </view>
+        <text class='claName'>{{claName}}</text>
+      </view>
+    </view>
+
+  <!-- tempppppppppppppppppppppppppppppppppp -->
+<navigator url="/pages/comingSoon/comingSoon"> 
+
+    <view class="thirdblock" style='margin-top:80px;'>
+      <view class="itemself" bindtap="click_myLaunch" data-index="1">
+        <image src="/static/images/icon/times.png" class="itemself_ico"></image>
+        <span>我的发起</span>
+      </view>
+      <view class="itemself" bindtap="click_myJoin" data-index="2">
+        <image src="/static/images/icon/jssq.png" class="itemself_ico"></image>
+        <span>我的加入</span>
+      </view>
+      <view class="itemself" bindtap="click_myCollection" data-index="3">
+        <image src="/static/images/icon/status.png" class="itemself_ico"></image>
+        <span>我的收藏</span>
+      </view>
+      <view class="itemself" bindtap="click_projectBrief" data-index="4">
+        <image src="/static/images/icon/specialty.png" class="itemself_ico"></image>
+        <span>项目简介</span>
+      </view>
+      <view class="itemself" bindtap="click_Tick" data-index="5">
+        <image src="/static/images/icon/tick2.png " class="itemself_ico"></image>
+        <span>反馈建议</span>
+      </view>
+       <view class="itemself" bindtap="click_more" data-index="6">
+        <image src="/static/images/icon/plus.png " class="itemself_ico"></image>
+        <span>更多信息</span>
+      </view>
+    </view>
+    <view class="h10"></view>
+    <view class="h10"></view>
+       </navigator>   <!-- temppppppppppppppppppppppppppppppp-->
+  </view>
+
+</view>

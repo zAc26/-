@@ -1,0 +1,27 @@
+<import src="/wxSearch/wxSearch.wxml" />
+<import src="../template/activity/common-list.wxml" />
+<view class="wxSearch-section">
+  <view class="search-pancel">
+    <input bindinput="wxSearchInput" bindfocus="wxSerchFocus" value="{{wxSearchData.value}}" bindblur="wxSearchBlur" name="input" confirm-type="搜索" class="search-input" placeholder="请输入选修课课程号..."></input>
+    <button bindtap="findEach" class="search-button" form-type="submit" size="mini" plain="true">
+      <icon type="search" color="#959595" size="12" />
+    </button>
+  </view>
+</view>
+<template is="wxSearch" data="{{wxSearchData}}" />
+<view class="scontainer">
+  
+
+  <view class="index-container">
+    <!--无通知记录-->
+    <view wx:if="{{moodList.length == 0}}">
+      <view class="imgitem">
+        <image src="/static/images/norecord1.png" class="empty_img"></image>
+      </view>
+      <view class="txtitem">
+        <text class="t28rpx">检索不到活动</text>
+      </view>
+    </view>
+   
+  </view>
+</view>

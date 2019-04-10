@@ -1,0 +1,151 @@
+/* pages/course/course.wxss */
+
+.sign{
+    position: absolute;
+    left:45%;
+    top:40%;
+    width:50vw;
+    height:120rpx;
+}
+.sign .image{
+ width:120rpx;
+    height:120rpx;
+  align-items: center;
+}
+.sign .view{
+  width: 50vw;
+  height: 10vw;
+  align-items: center;
+}
+
+.buttom{
+  width: 100vw;
+  background: #fff;
+  /* display: flex;
+  flex-direction: row; */
+  position: fixed;
+  bottom:0;
+}
+
+.zhanwen{
+  height: 17vh;
+}
+.zhanwen2{
+   height: 11vh;
+}
+.signIn{
+  height: 8vh;
+}
+
+.head{
+    width: 100%;
+    background-color: #fff;
+    font-size: 30rpx;
+    display: flex;
+    align-items: center;
+    height: 5vh;
+    position: relative;
+}
+.sv__container{
+    width: 100%;
+    height: 5vh;
+    white-space: nowrap;
+    /* background:#E6F3F9;     */
+
+}
+.sv__item{
+    padding: 14rpx;
+      font-size: 28rpx;
+      width: 30%;
+      text-align:center;
+    display: inline-block;
+}
+.sv-manager{
+    padding-left:20rpx;
+    width: 1rem;
+    height: 1rem;
+    vertical-align: center;
+}
+.active{
+    /* color:#d81e06; */
+     font-size: 32rpx;
+        line-height:25rpx;
+    /* border-bottom: 2rpx solid #d81e06; */
+      border-bottom: 2rpx solid #d0d0d0;
+    font-weight:bold;   
+}
+.stuInfo{
+  width: 100%;
+    display: flex;
+    height: 5vh;  /*************/
+    text-align: center;
+}
+.stuInfo .sno{
+width: 33vw;
+}
+.stuInfo .name{
+width: 33vw;
+}
+.stuInfo .state{
+width: 33vw;
+}
+
+.top{
+   height:90vh;  /*************/
+}
+.line {
+  height: 1px;
+  width: 100%;
+  background-color: #e0e1e2;
+ 
+}
+
+
+
+.header {
+  height:10vh ;     /*************/
+  background: white;
+}
+
+.header .profile {
+  height: 50%;
+}
+
+
+.header .tablist {
+    height: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tablist .tab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 25%;
+    margin: 7.5px 0px;
+    border-right: 1px solid #eceff4;
+}
+
+.tab .content{
+    width: 25px;
+    height: 50px;
+    font-size: 12px;
+    color: #B3B3B3;
+}
+
+.tab .image {
+    width: 25px;
+    height: 25px;
+    margin-top: 10px;
+}
+
+
+.line {
+  height: 1px;
+  width: 100%;
+  background-color: #e0e1e2;
+}
+

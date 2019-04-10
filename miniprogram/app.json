@@ -1,0 +1,56 @@
+{
+  "pages": [
+
+      "pages/start/start",
+        "pages/courseManage/courseManage",
+  "pages/courseMessage/courseMessage",
+    "pages/addClass/addClass",
+  "pages/register/register",
+    "pages/message/message",
+    "pages/course/course",
+    "pages/comingSoon/comingSoon",
+    "pages/index/index",
+    "pages/my/my",
+    "pages/search/search"
+  ],
+
+  
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置将被用于签到定位"
+    }
+  },
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#118fff",
+    "navigationBarTitleText": "高校云课堂",
+    "backgroundColor": "#fff"
+  },
+  "tabBar": {
+    "color": "#9BABBA",
+    "selectedColor": "#495056",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [ 
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/images/tar-home.png",
+        "selectedIconPath": "static/images/tar-home-on.png"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "text": "消息",
+        "iconPath": "static/images/tar-topic.png",
+        "selectedIconPath": "static/images/tar-topic-on.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "static/images/me1.png",
+        "selectedIconPath": "static/images/me2.png"
+      }
+    ]
+  }
+  
+}

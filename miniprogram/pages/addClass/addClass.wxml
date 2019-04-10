@@ -1,0 +1,166 @@
+<!--pages/addClass/addClass.wxml-->
+<!-- 新建活动 -->
+<view class="add-page">
+  <form bindsubmit="submitForm">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{TopTips}}</view>
+    <view class="mod-a">
+<!-- 添加图片（选） -->
+   <view class="add_pic" bindtap="uploadPic" wx-if="{{!isSrc}}">
+      <view>添加图片（选）</view>
+    </view>
+    <view wx:if="{{isSrc}}" class="image_box">
+      <view class="picPre">
+        <image src="{{src}}" mode="aspectFit"></image>
+        <view bindtap="clearPic"></view>
+      </view>
+    </view>
+
+
+
+     <!-- 课程名-->
+      <view class="mod t-name">
+        <text class="key">课程名</text>
+        <input name="name" class="input" maxlength="100" placeholder="请输入课程名" value="{{title}}" />
+        <image class="arrow-r" src="/static/images/arrow-r-0.png"></image>
+      </view>
+    </view>
+
+    <view class="mod-a mt20">
+   
+
+
+      <!-- 学期 -->
+      <view class="mod t-sign-time">
+        <text class="key">面向学期</text>
+        <picker bindchange="bindtermChange"  value="{{termIndex}}" range="{{term}}">
+          <view class="value" name="term" >{{term[termIndex]}}
+            <image class="arrow-r" src="/static/images/arrow-r-0.png"></image>
+          </view>
+        </picker>
+      </view>
+
+
+      <!-- 限制人数 -->
+      <view class="mod  t-early">
+        <!-- <text wx:if="{{!peopleHide}}"class="key">是否选修课（否：强制加入）</text>
+        <text  class="key"  wx:else>是否自愿（是：自愿加入）</text> -->
+         <text class="key">是否选修课</text>
+        <switch type="switch" bindchange="switch1Change" name="switchHide" />
+      </view>
+
+
+    <!--学院 班级 -->
+    <view wx:if="{{!peopleHide}}">
+   <!-- 学院 -->
+      <view class="mod t-sign-time">
+        <text class="key">面向学院</text>
+        <picker bindchange="bindTypeChange"  value="{{typeIndex}}" range="{{college}}">
+          <view class="value" name="college" >{{college[typeIndex]}}
+            <image class="arrow-r" src="/static/images/arrow-r-0.png"></image>
+          </view>
+        </picker>
+      </view>
+    <!-- 班级 -->
+
+<!-- *************************************** -->
+ <view>
+    <block wx:for="{{claList}}" wx:key="{{index}}"  >
+
+    <view class="mod t-address" >           
+      <!-- <view class="key" > -->
+          <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" > 
+                <view class="content1">
+                   <text class="key2">{{item.content}}班</text>
+                </view>
+                <view class="del" catchtap="del" data-index="{{index}}">删除</view>
+          </view> 
+    </view> 
+
+    </block>
+
+     <view class="mod t-address" >
+        <input name="cla{{index}}" class="input"  type="number" maxlength="100" placeholder="添加班级" value="{{input_code}}"   bindblur='addClaList' />
+      </view>
+
+  </view>
+<!-- sfffffffffffffffffffffffffffffffffff -->
+
+           
+
+
+
+    </view>
+
+      <!-- 人数设置 -->
+      <view wx:else >
+        <view  class="mod t-name">
+          <text class="key">人数上限</text>
+          <input name="peoplenum"   type="number" class="input" maxlength="100" placeholder='请设置人数上限' value="{{peoplenum}}" />
+          <image class="arrow-r" src="/static/images/arrow-r-0.png"></image>
+        </view>
+      </view>
+    </view>
+
+        
+
+    <!-- 活动内容 -->
+    <view class="mod-a mt20">
+      <view class="mod-big my-nick">
+        <textarea name="content" class="weui-textarea" placeholder="请输入课程描述" value="{{content}}" style="height: 7em" bindinput="bindTextAreaChange" maxlength="{{noteMaxLen}}" />
+        <view class="chnumber">{{noteNowLen}}/{{noteMaxLen}}</view>
+      </view>
+    </view>
+   
+
+
+
+
+
+    <view class="mod-a mt20">
+      <checkbox-group bindchange="bindAgreeChange">
+        <label class="weui-agree" for="weuiAgree">
+          <view class="weui-agree__text">
+          <checkbox class="weui-agree__checkbox" id="weuiAgree" value="agree" checked="{{isAgree}}" />
+            <view class="weui-agree__checkbox-icon">
+              <icon class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" wx:if="{{isAgree}}"></icon>
+            </view>
+            阅读并同意
+            <view bindtap="showNotice" class="weui-agree__link">
+              《创建须知》</view>
+    
+          </view>
+        </label>
+      </checkbox-group>
+      <view class="submit-btn">
+        <button class='button' loading="{{isLoading}}" hover-start-time="200" disabled="{{isdisabled}}" formType="submit">创建课程</button>
+      </view>
+    </view>
+  </form>
+</view>
+
+
+
+<view class="notice" id="notice" wx:if="{{notice_status}}" bindtap="tapNotice">
+        <view class="box">
+          <view class="box-hd">
+            <text class="box-title">创建须知</text>
+            <image class="box-close" src="/static/images/more/close.png" bindtap="hideNotice"></image>
+          </view>
+          <view class="box-bd">
+            <view class="notice-q">1、关于非选修课的创建权限的几点说明</view>
+            <view class="notice-a">
+              <text>非选修课的创建会强制符合条件的用户加入其中。请务必保证开设课程的真实性，以及自身身份真实性。</text>
+               <text>对于虚假信息发布行为，经发现将会面临封号风险。</text>
+            </view>
+            <view class="notice-q">2、选修课发布指南</view>
+            <view class="notice-a">
+              <text>对于选修课的创建，需其他用户自愿加入。教师可通过分享课程号的方式实现</text>
+            </view>
+           
+
+          </view>   
+          </view>
+        
+      </view>
+
+      
