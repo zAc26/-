@@ -30,14 +30,17 @@ Page({
 
 
   onLoad: function() {
+    console.log('123')
+    console.log(app)
+    console.log('456')
     var that = this
     this.setData({
         userDataBaseInfo : app.globalData.userDataBaseInfo,
         power : app.globalData.userPower,
         userInfo : app.globalData.userInfo,
         claName : app.globalData.claName,
-      college: app.globalData.collegeList[app.globalData.userDataBaseInfo.collegeNum],
-      categoryTabs: app.globalData.userPower == app.globalData.powerMenu['student']? [{ name: '全部', selected: true, id: 0 }, { name: '必修', selected: false, id: 1 }, { name: '选修', selected: false, id: 2 }] : [{ name: '我听的课', selected: true, id: 0 }, { name: '我教的课', selected: false, id: 3 }]
+        college: app.globalData.collegeList[app.globalData.userDataBaseInfo.collegeNum],
+        categoryTabs: app.globalData.userPower == app.globalData.powerMenu['student']? [{ name: '全部', selected: true, id: 0 }, { name: '必修', selected: false, id: 1 }, { name: '选修', selected: false, id: 2 }] : [{ name: '我听的课', selected: true, id: 0 }, { name: '我教的课', selected: false, id: 3 }]
     })
 
 
@@ -63,8 +66,8 @@ Page({
     else
         console.log("来者何人！！！")
 
-    // getCourseList(that, that.data.userDataBaseInfo.cla_id)  //听课
-    // getCourseList2(that, that.data.userDataBaseInfo._id)  //叫得可
+    getCourseList(that, that.data.userDataBaseInfo.cla_id)  //听课
+    getCourseList2(that, that.data.userDataBaseInfo._id)  //叫得可
     
   
   },
@@ -146,13 +149,13 @@ Page({
     if (that.data.courseListShow[i].createManId == that.data.userDataBaseInfo._id && that.data.power != app.globalData.powerMenu['student'] ){
       console.log("欢迎老师来上课")
       wx.navigateTo({
-        url: '../courseManage/courseManage?id=' + that.data.courseListShow[i]._id + "&isSigning=" + that.data.courseListShow[i].isSigning,
+        url: '../courseManage/courseManage?id=' + that.data.courseListShow[i]._id + "&isSigning=" + that.data.courseListShow[i].isSigning + ",&name=" + that.data.userDataBaseInfo.name,
       })
     }
     else{
       console.log("小同学快来上课")
       wx.navigateTo({
-        url: '../course/course?id=' + that.data.courseListShow[i]._id + "&isSigning=" + that.data.courseListShow[i].isSigning,
+        url: '../course/course?id=' + that.data.courseListShow[i]._id + "&isSigning=" + that.data.courseListShow[i].isSigning + "&name=" + that.data.userDataBaseInfo.name,
       })
     }
   },

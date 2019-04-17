@@ -1,8 +1,6 @@
-//某一系列数据库操作的集合  
-
 const SQL = require("SQL.js");
 const FILE = require('FILE.js')
-//通过课程id 获取所有学生
+
 function getStuByCourseId(courseId, fn) {
   var stuList = []
 

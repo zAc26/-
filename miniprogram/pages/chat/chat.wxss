@@ -1,0 +1,255 @@
+/* pages/contact/contact.wxss */
+
+page {
+  background-color: #f1f1f1;
+}
+
+.inputRoom {
+  width: 100vw;
+  height: 16vw;
+  border-top: 1px solid #cdcdcd;
+  background-color: #f1f1f1;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  z-index: 20;
+}
+
+input {
+  width: 76vw;
+  height: 9.33vw;
+  background-color: #fff;
+  border-radius: 40rpx;
+  margin-left: 2vw;
+  padding: 0 3vw;
+  font-size: 28rpx;
+  color: #444;
+}
+
+.leftMsg {
+  font-size: 35rpx;
+  color: #444;
+  line-height: 7vw;
+  padding: 2vw 2.5vw;
+  background-color: #fff;
+  margin-left: -1.6vw;
+  border-radius: 10rpx;
+  z-index: 10;
+}
+
+.rightMsg {
+  font-size: 35rpx;
+  color: #444;
+  line-height: 7vw;
+  padding: 2vw 2.5vw;
+  background-color: #96EB6A;
+  margin-right: -1.6vw;
+  border-radius: 10rpx;
+  z-index: 10;
+}
+.leftName{
+margin-left: -3vw;
+text-align: center;
+font-size: 30rpx;
+padding: 10rpx 0;
+color: #666;
+}
+/* 信息输入区域 */
+ 
+.message{
+ 
+position: fixed;
+ 
+bottom:0;
+ 
+width: 100%;
+ 
+}
+ 
+.sendMessage{
+ 
+display: block;
+ 
+height: 80rpx;
+ 
+padding: 10rpx 10rpx;
+z-index:3;
+margin-bottom:7px;
+
+ 
+}
+ 
+.sendMessage input{
+ 
+float:left;
+ 
+width: 62%;
+ 
+height: 100%;
+ 
+line-height: 80rpx;
+ 
+border: 0.5rpx solid #ccc;
+ 
+padding:0 10rpx;
+ 
+font-size: 35rpx;
+ 
+color: #666;
+ 
+}
+.send{
+  float:left;
+ 
+width: 60%;
+ 
+height: 68%;
+ 
+line-height: 80rpx;
+ 
+border: 0.5rpx solid #ccc;
+ 
+padding:0 10rpx;
+ 
+font-size: 35rpx;
+ background-color:#fff;
+color: #666;
+margin-left:3vw;
+word-break:break-all;
+border-radius: 40rpx;
+}
+ .add{
+   display: inline-block;
+ 
+width: 10%;
+ 
+height: 80rpx;
+ 
+line-height: 80rpx;
+ 
+font-size: 60rpx;
+ 
+text-align: center;
+ 
+color: #999;
+ 
+border: 1rpx solid #ccc;
+ 
+border-radius: 50%;
+ 
+margin-left:25rpx;
+
+ }
+ .sendButton{
+   float: right;
+ 
+font-size: 35rpx;
+ }
+.sendMessage view{
+ 
+display: inline-block;
+ 
+width: 10%;
+ 
+height: 80rpx;
+ 
+line-height: 80rpx;
+ 
+font-size: 60rpx;
+ 
+text-align: center;
+ 
+color: #999;
+ 
+border: 1rpx solid #ccc;
+ 
+border-radius: 50%;
+ 
+margin-left:25rpx;
+margin-right:5rpx;
+
+ 
+}
+ 
+.sendMessage button {
+ 
+float: right;
+ 
+font-size: 35rpx;
+ 
+}
+ 
+.increased{
+ 
+width:100%;
+ 
+/* height: 150rpx; */
+ 
+padding: 40rpx 30rpx;
+ 
+background-color: #fff;
+ 
+}
+ 
+.increased .image{
+ 
+width: 100rpx;
+ 
+height: 100rpx;
+ 
+border: 3rpx solid #ccc;
+ 
+line-height: 100rpx;
+ 
+text-align: center;
+ 
+border-radius: 8rpx;
+ 
+font-size:35rpx;
+ 
+}
+ 
+@keyframes slidedown {
+ 
+from {
+ 
+transform: translateY(0);
+ 
+}
+ 
+to {
+ 
+transform: translateY(100%);
+ 
+}
+ 
+}
+ 
+.slidedown {
+ 
+animation: slidedown 0.5s linear ;
+ 
+}
+ 
+.slideup {
+ 
+animation: slideup 0.5s linear ;
+ 
+}
+ 
+@keyframes slideup {
+ 
+from {
+ 
+transform: translateY(100%);
+ 
+}
+ 
+to {
+ 
+transform: translateY(0);
+ 
+}
+ 
+}

@@ -1,11 +1,10 @@
 {
   "pages": [
-
-      "pages/start/start",
-        "pages/courseManage/courseManage",
-  "pages/courseMessage/courseMessage",
+    "pages/start/start",
+    "pages/courseManage/courseManage",
+    "pages/courseMessage/courseMessage",
     "pages/addClass/addClass",
-  "pages/register/register",
+    "pages/register/register",
     "pages/message/message",
     "pages/course/course",
     "pages/comingSoon/comingSoon",
@@ -13,8 +12,6 @@
     "pages/my/my",
     "pages/search/search"
   ],
-
-  
   "permission": {
     "scope.userLocation": {
       "desc": "你的位置将被用于签到定位"
@@ -31,7 +28,7 @@
     "selectedColor": "#495056",
     "borderStyle": "white",
     "backgroundColor": "#ffffff",
-    "list": [ 
+    "list": [
       {
         "pagePath": "pages/index/index",
         "text": "首页",
@@ -52,5 +49,4 @@
       }
     ]
   }
-  
 }

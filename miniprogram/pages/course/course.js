@@ -44,14 +44,15 @@ Page({
     headTab: 0,
     // 高亮的标签索引
     highLightIndex: "0",
-    coursePoint:{},
-    isSign:false
+    coursePoint: {},
+    isSign: false,
+    name: ""
 
   },
-  signIn:function(){
-    
-      var that =this
-      getLoc(that)
+  signIn: function () {
+
+    var that = this
+    getLoc(that)
 
 
   },
@@ -75,14 +76,15 @@ Page({
 
     that.setData({
       courseId: options.id,
-      isSigning: isSigning
+      isSigning: isSigning,
+      name: options.name
     })
     if (isSigning)
-    SQL.query('course', { _id: options.id},function(res){
-      that.setData({
-        coursePoint: res.data[0].point,
+      SQL.query('course', { _id: options.id }, function (res) {
+        that.setData({
+          coursePoint: res.data[0].point,
+        })
       })
-    })
 
   },
 
@@ -107,13 +109,13 @@ Page({
    */
   onReady: function () {
     var that = this
-    SQL.query('user',{
-      _id:app.globalData. userDataBaseInfo._id
-    },function(res){
+    SQL.query('user', {
+      _id: app.globalData.userDataBaseInfo._id
+    }, function (res) {
       if (res.data[0].signIn.hasOwnProperty(that.data.courseId))
-         that.setData({
-           isSign:res.data[0].signIn[that.data.courseId]
-         })
+        that.setData({
+          isSign: res.data[0].signIn[that.data.courseId]
+        })
     })
 
   },
@@ -166,14 +168,14 @@ Page({
 
 
 function getLoc(that) {
-  if (that.data.coursePoint =={}){
-     wx.showModal({
-       title: '提示',
-       content: '签到信息获取失败：请尝试下拉刷新或检查网络',
-     })
-     return
+  if (that.data.coursePoint == {}) {
+    wx.showModal({
+      title: '提示',
+      content: '签到信息获取失败：请尝试下拉刷新或检查网络',
+    })
+    return
   }
-      
+
   //获取当前位置
   wx.getLocation({
     type: 'gcj02',// 默认为 wgs84 返回 gps 坐标，gcj02 返回可用wx.openLocation 的坐标
@@ -189,7 +191,7 @@ function getLoc(that) {
       that.setData({
         point: point
       })
-      if ( !isTogether(that.data.coursePoint ,point)){
+      if (!isTogether(that.data.coursePoint, point)) {
         wx.showModal({
           title: '提示',
           content: '签到失败：未在指定范围内进行签到',
@@ -203,7 +205,7 @@ function getLoc(that) {
           [ziduan]: true
         }
       })
-    that.setData( {isSign:true })
+      that.setData({ isSign: true })
       wx.showToast({
         title: '签到成功',
         icon: 'success',
@@ -212,17 +214,18 @@ function getLoc(that) {
 
 
     },
-    fail: function (err) { 
-       wx.showModal({
-         title: '提示',
-         content: '获取定位失败：请检查是否允许获取位置或检查网络',
-       })
-      console.log("获取定位失败", err)}
+    fail: function (err) {
+      wx.showModal({
+        title: '提示',
+        content: '获取定位失败：请检查是否允许获取位置或检查网络',
+      })
+      console.log("获取定位失败", err)
+    }
   })
 }
 
-function isTogether(p1,p2){
-  if (Math.abs(p1.latitude * 1000 - p2.latitude * 1000) < 3 && Math.abs(p1.longitude * 1000 - p2.longitude * 1000) < 5 )
-  return true
+function isTogether(p1, p2) {
+  if (Math.abs(p1.latitude * 1000 - p2.latitude * 1000) < 3 && Math.abs(p1.longitude * 1000 - p2.longitude * 1000) < 5)
+    return true
   return false
 }

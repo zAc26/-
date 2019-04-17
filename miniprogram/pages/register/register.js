@@ -13,10 +13,14 @@ Page({
     typeIndex: "0",
     isAgree: false,
     TopTips: '',
+    avatarUrl: ""
   },
 
-  onLoad: function () {
+  onLoad: function (options) {
    var that =this
+   this.setData({
+     avatarUrl: options.avatarUrl
+   })
     getCollege(
       function(data){
         that.setData({
@@ -165,6 +169,7 @@ addCla :function(res){
     userInfo['college'] = typeIndex;
     userInfo['power'] = switchHide ? 1 : 2;
     userInfo['openId'] = app.globalData.openId;
+    userInfo['avatarUrl'] = that.data.avatarUrl;
 
     //1.创建班级
 
@@ -245,6 +250,7 @@ function getCollege(f){
  *  开始添加用户
  */
 function  addUser(cla) {   //2/完成后创建用户
+  var that = this;
   userInfo['cla'] = cla;
   console.log(userInfo)
   SQL.addSQLPlus1('user',
@@ -255,6 +261,7 @@ function  addUser(cla) {   //2/完成后创建用户
       cla_id: userInfo['cla'],
       collegeNum: userInfo['college'],
       power: userInfo['power'],
+      avatarUrl: userInfo['avatarUrl'],
       signIn: {}
     },
     function (user_id) {  //增加玩用户之后 

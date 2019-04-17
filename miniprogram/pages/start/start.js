@@ -121,18 +121,20 @@ function  findUser( oid ,that) {
         setTimeout(function () {
           wx.hideLoading()
           wx.navigateTo({
-            url: '../register/register',
+            url: '../register/register?avatarUrl=' + that.data.avatarUrl,
           })
         }, 800)
       }
       else{          //---老客户
         app.globalData.userDataBaseInfo = res.data[0]
         app.globalData.userPower = res.data[0]['power']
+        console.log(res.data[0].cla_id);
         SQL.query('cla',{
-          _id: res.data[0].cla
+          _id: res.data[0].cla_id
         },
         function(res){
-          app.globalData.claName = res.data[0].claName
+          console.log(res);
+          app.globalData.claName = res.data[0].claName;
         })
 
         wx.showToast({
