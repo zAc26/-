@@ -54,7 +54,7 @@ function queryPlus(dataBase, query, fn) {
 }
 
 
-function query(dataBase, query, fn) {
+function query(dataBase, query, fn, i) {
   if (fn == null) fn = function (res) { console.log(res) }
 
   const db = wx.cloud.database()
@@ -63,15 +63,13 @@ function query(dataBase, query, fn) {
   db.collection(dataBase).where(query).get({
     success: res => {
       console.log('[数据库:' + dataBase + '] [查询记录] 成功: ', res)
-      fn(res)
+      fn(res, i)
     },
     fail: err => {
       console.error('[数据库:' + dataBase + '] [查询记录] 失败：', err)
     }
   })
-
 }
-
 
 /**
  *  查重

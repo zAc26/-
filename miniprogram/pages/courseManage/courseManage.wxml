@@ -1,68 +1,55 @@
 <!-- ################################################################################################### -->
-                                       <!-- 签到 -->
+<!-- 签到 -->
 <!-- ################################################################################################### -->
-   <!-- 签到导航导航 -->
-   <view wx:if="{{currentTab=='tab1'}}" class ='top'>
-    <view class="body" > 
-     
-     <view class='up'>
-
-     <view class='signIn'> 
-       <button loading="{{isLoading}}"  disabled="{{isdisabled}}" bindtap='signIn' style='color:{{isSigning? "red":"green"}};' >{{!isSigning? "发起签到":"关闭签到" }}</button>
+<!-- 签到导航导航 -->
+<view wx:if="{{currentTab=='tab1'}}" class='top'>
+  <view class="body">
+    <view class='up'>
+      <view class='signIn'>
+        <button loading="{{isLoading}}" disabled="{{isdisabled}}" bindtap='signIn' style='color:{{isSigning? "red":"green"}};'>
+          {{!isSigning? "发起签到":"关闭签到" }}
+        </button>
       </view>
-     
-        <scroll-view class="sv__container" scroll-x="true" >
-            <block wx:for="{{categoryTabs}}" wx:key="id" >
-                <view 
-                    class="sv__item {{ headTab==item.id ? 'active':'' }}" 
-                    bindtap="changeCategory" 
-                    data-id="{{ item.id }}" >
-                    {{ item.name }}
-                </view>
-            </block>
-        </scroll-view>
-      
-
-          <view class="table">
-          <view class="tr2 bg-w">
-            <view class="th"> {{isSigning?stuList.length : '学号'}} </view>
-            <view class="th">{{isSigning?signNum : '姓名'}}</view>
-            <view class="th ">{{isSigning?stuList.length-signNum : '状态'}}</view>
+      <scroll-view class="sv__container" scroll-x="true">
+        <block wx:for="{{categoryTabs}}" wx:key="id">
+          <view class="sv__item {{ headTab==item.id ? 'active':'' }}" bindtap="changeCategory" data-id="{{ item.id }}">
+            {{ item.name }}
+          </view>
+        </block>
+      </scroll-view>
+      <view class="table">
+        <view class="tr2 bg-w">
+          <view class="th">{{isSigning?stuList.length : '学号'}}</view>
+          <view class="th">{{isSigning?signNum : '姓名'}}</view>
+          <view class="th ">{{isSigning?stuList.length-signNum : '状态'}}</view>
         </view>
-     </view>
- </view>
-
-  <!-- 站位上 -->
-  <view class='zhanwen'>
-  </view>
-
-  <block wx:for="{{stuListShow}}" wx:key="{{item.sno}}">
-    <!-- <view class="tr bg-g" wx:if="{{index % 2 == 0}}"> -->
-     <view class="tr {{index % 2 == 0? 'bg-g':''}}">
-      <view class="td">{{item.sno}}</view>
-      <view class="td">{{item.name}}</view>
-      <view class="td"style='color: {{item.signIn[courseId]?"green":"red"}};' >
-             {{ isSigning ? (item.signIn[courseId]?"已签到":"未签到") :"" }}</view>
+      </view>
     </view>
-  </block>
-
-   <!-- 站位 下-->
-  <view class='zhanwen2'>
+    <!-- 站位上 -->
+    <view class='zhanwen'></view>
+    <block wx:for="{{stuListShow}}" wx:key="{{item.sno}}">
+      <!-- <view class="tr bg-g" wx:if="{{index % 2 == 0}}"> -->
+      <view class="tr {{index % 2 == 0? 'bg-g':''}}">
+        <view class="td">{{item.sno}}</view>
+        <view class="td">{{item.name}}</view>
+        <view class="td" style='color: {{item.signIn[courseId]?"green":"red"}};'>
+          {{ isSigning ? (item.signIn[courseId]?"已签到":"未签到") :"" }}
+        </view>
+      </view>
+    </block>
+    <!-- 站位 下 -->
+    <view class='zhanwen2'></view>
   </view>
 </view>
-    </view>
 <!-- ################################################################################################### -->
-                                     <!-- 题库-->
+<!-- 题库 -->
 <!-- ################################################################################################### -->
- <view  wx:if="{{currentTab=='tab2'}}" class='top'>
-
-</view>
+<view wx:if="{{currentTab=='tab2'}}" class='top'></view>
 <!-- ################################################################################################### -->
-                                     <!-- 互动 -->
+<!-- 互动 -->
 <!-- ################################################################################################### -->
- <view  wx:if="{{currentTab=='tab3'}}" class='top'>
-
-          <!-- <view class="wrap"> 
+<view wx:if="{{currentTab=='tab3'}}" class='top'>
+  <!-- <view class="wrap"> 
         <button bindtap="setClear">clear</button>
         <view class="containerBox" style="">
           <view wx:for="{{messageList}}">
@@ -77,23 +64,23 @@
             <button type="default" class="btn_submit" size="mini" bindtap="submit" formType="submit">发送</button>
         </view>
         </form>
-    </view>
-     -->
- </view>
+    </view> -->
+</view>
 <!-- ################################################################################################### -->
-                          <!-- 设置 -->
+<!-- 设置 -->
 <!-- ################################################################################################### -->
- <view wx:if="{{currentTab=='tab4'}}" class='top'>
-     <button loading="{{isLoading}}"  disabled="{{isdisabled}}" class='delete' bindtap='delCourse'>删除该课程</button>
- </view>
-
+<view wx:if="{{currentTab=='tab4'}}" class='top'>
+  <button loading="{{isLoading}}" disabled="{{isdisabled}}" class='delete' bindtap='delCourse'>
+    删除该课程
+  </button>
+</view>
 <!-- ################################################################################################### -->
-<!--一个全屏模态对话框-->
+<!-- 一个全屏模态对话框 -->
 <view>
   <view class="modal" style="{{modalShowStyle}}">
     <view class="dialog">
       <view class="modal-item" style="display:flex;justify-content:center;align-items:center;">
-      请输入日记标题
+        请输入日记标题
       </view>
       <view class="modal-item" style="margin:0 auto;width:90%;">
         <input type="text" bindinput="titleInput" style="background-color:white;border-radius:2px;" value="{{diaryTitle}}" placeholder="请输入日记标题"></input>
@@ -104,24 +91,27 @@
       </view>
     </view>
   </view>
-
-
-<!--底部菜单 ################################################################################################### -->
-<view class='buttom'>
-   <view class='header'> 
-    <view class="tablist">
-      <view wx:for="{{tabs}}" wx:for-index="idx" class="tab" bindtap="touchTab" style="{{item.extraStyle}}" id="{{idx}}">
-        <view class="content" style="color:{{highLightIndex == idx ? '#54BFE2' : ''}};">
-          <image class="image" mode="aspectFit" src="{{highLightIndex == idx ? item.iconActive : item.icon}}"></image>
-          <view style="margin-top:2px;">{{item.title}}</view>
+  <!-- 底部菜单 ################################################################################################### -->
+  <view class='buttom'>
+    <view class='header'>
+      <view class="tablist">
+        <view wx:for="{{tabs}}" wx:for-index="idx" class="tab" bindtap="touchTab" style="{{item.extraStyle}}" id="{{idx}}">
+          <view wx:if="{{idx == 2}}">
+            <navigator url="/pages/chat/chat?courseId={{courseId}}&name={{name}}">
+              <view class="content" style="color:{{highLightIndex == idx ? '#54BFE2' : ''}};"></view>
+              <image class="image" mode="aspectFit" src="{{highLightIndex == idx ? item.iconActive : item.icon}}"></image>
+              <view style="margin-top:2px;">{{item.title}}</view>
+            </navigator>
+          </view>
+          <view wx:else>
+            <view class="content" style="color:{{highLightIndex == idx ? '#54BFE2' : ''}};"></view>
+            <image class="image" mode="aspectFit" src="{{highLightIndex == idx ? item.iconActive : item.icon}}"></image>
+            <view style="margin-top:2px;">{{item.title}}</view>
+          </view>
         </view>
       </view>
     </view>
   </view>
 </view>
-   
-</view>
-
 <!-- 出错提示 -->
 <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{TopTips}}</view>
-  

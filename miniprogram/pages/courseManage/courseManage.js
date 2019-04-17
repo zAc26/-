@@ -57,7 +57,8 @@ Page({
      point : {},
     messageList:[
       { userId: 'sfsdfsdf', content: 'UI是对庵后' }, { userId:'XFh-aHffS3SWKN_d',content :'什么桂东成'}
-    ]
+    ],
+    name: "",
   },
 
 // ----------------------------------------签到 
@@ -196,7 +197,8 @@ delCourse :function(){
 
     that.setData({
       courseId: options.id,
-      isSigning: isSigning
+      isSigning: isSigning,
+      name: options.name
     })
 
     refresh(that)

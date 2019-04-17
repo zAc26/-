@@ -58,7 +58,6 @@
      <!-- ////////////////////////////////////////////////////////// -->
      <view wx:else stytle=" overflow-x: hidden; overflow-y: auto; ">
         <view  class="message_list">
-         
           <block wx:for="{{courseListShow}}">
               <!-- <navigator url="{{url}}?{{item._id}}"> -->
               <view class="tr {{index % 2 == 0? 'bg-g':''}}">
