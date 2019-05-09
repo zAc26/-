@@ -1,0 +1,20 @@
+<view class="container">
+    <view class="logoinfo">
+        <image class="logo-avatar" src="../../../static/images/logo.png" background-size="cover"></image>
+        <text class="logo-nickname">题目问答</text>
+    </view>
+    <view wx:if="{{power != 2}}">
+        <view class="usermotto">
+            <button class='xuanze' bindtap="choice">上传选择题</button>
+            <button bindtap="answer">上传简答题</button>
+            <button bindtap="change" style="margin-top: 30px;">编辑上传题目</button>
+            <button style="margin-top: 30px;" bindtap="btnIntroduce">使用说明</button>
+        </view>
+    </view>
+    <view wx:else>
+        <view class="usermotto">
+            <button class='xuanze' bindtap="student_choice">回答选择题</button>
+            <button bindtap="student_answer">回答简答题</button>
+        </view>
+    </view>
+</view>

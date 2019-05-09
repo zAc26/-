@@ -2,9 +2,11 @@ var app = getApp();
 var windowWidth = wx.getSystemInfoSync().windowWidth;
 var windowHeight = wx.getSystemInfoSync().windowHeight;
 var keyHeight = 0;
-const SQL = require("../../utils/SQL.js");
 Page({
   data: {
+    inputVal: "",
+    scrollHeight: '100vh',
+    inputBottom: 0,
     socket_open: false,//判断连接是否打开
     sendText: "",//发送的消息
     serverMsg: [],//接受的服务端的消息
@@ -17,6 +19,7 @@ Page({
     first: true,
     name: ""
   },
+
   onLoad: function (options) {
     // app.login();
     // this.setData({
@@ -38,7 +41,7 @@ Page({
   },
 
   //页面卸载，关闭socket连接
-  onUnload: function(){
+  onUnload: function () {
     wx.closeSocket({
       code: 1000,
       reason: '',
@@ -46,8 +49,8 @@ Page({
         console.log(result);
         console.log("webSocket连接关闭");
       },
-      fail: () => {console.log("webSocket连接未正常关闭");},
-      complete: () => {}
+      fail: () => { console.log("webSocket连接未正常关闭"); },
+      complete: () => { }
     });
   },
 
@@ -55,7 +58,7 @@ Page({
     var that = this;
     //建立连接
     wx.connectSocket({
-      url: 'ws://120.79.196.123:8888/'//app.appData.socket
+      url: 'wss://xiaotingfeng.top:8888/'//app.appData.socket
     })
     //监听WebSocket连接打开事件。
     wx.onSocketOpen(function (res) {
@@ -151,5 +154,36 @@ Page({
         data: msg
       })
     }
-  }
+  },
+
+  /**
+   * 获取聚焦
+   */
+  focus: function (e) {
+    var that = this;
+    keyHeight = e.detail.height;
+    this.setData({
+      scrollHeight: (windowHeight - keyHeight) + 'px'
+    });
+    this.setData({
+      toView: 'msg-' + (that.data.serverMsg.length - 1),
+      inputBottom: keyHeight + 'px'
+    })
+    //计算msg高度
+    // calScrollHeight(this, keyHeight);
+
+  },
+
+  //失去聚焦(软键盘消失)
+  blur: function (e) {
+    var that = this;
+    this.setData({
+      scrollHeight: '100vh',
+      inputBottom: 0
+    })
+    this.setData({
+      toView: 'msg-' + (that.data.serverMsg.length - 1)
+    })
+
+  },
 })

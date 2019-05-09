@@ -1,0 +1,32 @@
+<!-- pages/main/single/single.wxml -->
+<view class="page">
+  <scroll-view scroll-y style="height:150px;">
+    <!-- <label class="page_title">{{item[1]}}</label> -->
+    <label class="page_title">{{items[now].question}}</label>
+  </scroll-view>
+  <scroll-view scroll-y style="height: {{opsHeight}}px; margin-top:8px;">
+    <button id='A' class="btn_op" bindtap="btnOpClick" style="background-color: {{bcA}};">
+      A:{{items[now].choiceArray[0]}}
+    </button>
+    <button id='B' class="btn_op" bindtap="btnOpClick" style="background-color: {{bcB}};">
+      B:{{items[now].choiceArray[1]}}
+    </button>
+    <button id='C' class="btn_op" bindtap="btnOpClick" style="background-color: {{bcC}};">
+      C:{{items[now].choiceArray[2]}}
+    </button>
+    <button id='D' class="btn_op" bindtap="btnOpClick" style="background-color: {{bcD}};">
+      D:{{items[now].choiceArray[3]}}
+    </button>
+  </scroll-view>
+  <view wx:if="{{items[now].isAnswer}}">
+    你选择的答案是：{{items[now].student_answer}}
+  </view>
+  <view wx:if="{{items[now].isAnswer}}">
+    正确答案是：{{items[now].answer}}
+  </view>
+  <view class="page_bottom">
+    <view class="page_bottom_left" bindtap="showRight">{{now + 1}}/{{length}}</view>
+    <view class="page_bottom_last" bindtap="lastQuestion">◁</view>
+    <view class="page_bottom_next" bindtap="nextQuestion">▷</view>
+  </view>
+</view>

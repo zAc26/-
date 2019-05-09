@@ -10,7 +10,15 @@
     "pages/comingSoon/comingSoon",
     "pages/index/index",
     "pages/my/my",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/question_answer/change_question/change_question",
+    "pages/question_answer/question_index/question_index",
+    "pages/question_answer/student_answer/student_answer",
+    "pages/question_answer/upload_choice/upload_choice",
+    "pages/question_answer/upload_question/upload_question",
+    "pages/question_answer/student_choice/student_choice",
+    "pages/question_answer/look_answer/look_answer",
+    "pages/sendMessage/sendMessage"
   ],
   "permission": {
     "scope.userLocation": {
@@ -48,5 +56,6 @@
         "selectedIconPath": "static/images/me2.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

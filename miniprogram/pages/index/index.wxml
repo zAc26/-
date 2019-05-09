@@ -58,7 +58,7 @@
      <!-- ////////////////////////////////////////////////////////// -->
      <view wx:else stytle=" overflow-x: hidden; overflow-y: auto; ">
         <view  class="message_list">
-          <block wx:for="{{courseListShow}}">
+          <block wx:for="{{courseListShow}}" wx:key="{{uuid}}">
               <!-- <navigator url="{{url}}?{{item._id}}"> -->
               <view class="tr {{index % 2 == 0? 'bg-g':''}}">
                 <view class="item" bindtap='toCourse' id='{{index}}' >

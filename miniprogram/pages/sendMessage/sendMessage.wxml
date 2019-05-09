@@ -1,0 +1,22 @@
+<view class="question-form">
+    <view class="question-input-area">
+        <!-- 问题标题 -->
+        <view class="question-title-wrap">
+            <input class="question-title" placeholder="请输入消息标题。" maxlength="40" placeholder-style="color:#b3b3b3;font-size:18px;" bindinput="title" value="{{title}}"></input>
+            <view class="title-input-counter">{{titleCount}}/40</view>
+        </view>
+        <!-- 问题正文 -->
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <textarea class="weui-textarea" placeholder="请输入消息内容。" maxlength="500" placeholder-style="color:#b3b3b3;font-size:14px;" style="height: 12rem" bindinput="message" value="{{message}}" />
+                    <view class="weui-textarea-counter">{{messageCount}}/500</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{!isLook}}">
+        <!-- 提交表单按钮 -->
+        <button class="weui-btn" type="primary" bindtap="submitForm">提交</button>
+    </view>
+</view>

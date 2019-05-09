@@ -14,6 +14,25 @@ function update(dataBase, id, data) {
   })
 }
 
+/**
+ * 更新成功后执行fn(res)
+ */
+function updatePlus(dataBase, id, data, fn) {
+
+  const db = wx.cloud.database()
+  db.collection(dataBase).doc(id).update({
+    data: data,
+    success: res => {
+      console.log('[数据库' + dataBase + '] [更新记录] 成功：', res);
+      fn(res);
+    },
+    fail: err => {
+      icon: 'none',
+        console.error('[数据库] [更新记录] 失败：', err)
+    }
+  })
+}
+
 
 /*addSQLPlus 先验证是否存在，查重
 *查到后执行fn(res)
@@ -25,6 +44,24 @@ function delById(dataBase, id) {
     db.collection(dataBase).doc(id).remove({
       success: res => {
         console.log('[数据库:' + dataBase + '] [删除记录:id=' + id + '] 成功：', res)
+      },
+      fail: err => {
+        console.error('[数据库:' + dataBase + '] [删除记录:id=' + id + '] 失败：', err)
+      }
+    })
+  } else {
+    console.log('无记录可删，请见创建一个记录')
+  }
+}
+
+
+function delByIdPlus(dataBase, id, fn) {
+  if (id) {
+    const db = wx.cloud.database()
+    db.collection(dataBase).doc(id).remove({
+      success: res => {
+        console.log('[数据库:' + dataBase + '] [删除记录:id=' + id + '] 成功：', res);
+        fn(res);
       },
       fail: err => {
         console.error('[数据库:' + dataBase + '] [删除记录:id=' + id + '] 失败：', err)
@@ -54,7 +91,7 @@ function queryPlus(dataBase, query, fn) {
 }
 
 
-function query(dataBase, query, fn, i) {
+function query(dataBase, query, fn) {
   if (fn == null) fn = function (res) { console.log(res) }
 
   const db = wx.cloud.database()
@@ -63,7 +100,7 @@ function query(dataBase, query, fn, i) {
   db.collection(dataBase).where(query).get({
     success: res => {
       console.log('[数据库:' + dataBase + '] [查询记录] 成功: ', res)
-      fn(res, i)
+      fn(res)
     },
     fail: err => {
       console.error('[数据库:' + dataBase + '] [查询记录] 失败：', err)
@@ -164,5 +201,7 @@ module.exports = {
   query: query,
   queryPlus: queryPlus,
   delById: delById,
-  update: update
+  update: update,
+  updatePlus: updatePlus,
+  delByIdPlus: delByIdPlus,
 }

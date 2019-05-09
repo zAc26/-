@@ -9,24 +9,28 @@ var tabs = [
     "iconActive": iconPath + "markHL.png",
     "title": "签到",
     "extraStyle": "",
+    url: "",
   },
   {
     "icon": iconPath + "collect.png",
     "iconActive": iconPath + "collectHL.png",
     "title": "题库",
     "extraStyle": "",
+    url: "",
   },
   {
     "icon": iconPath + "like.png",
     "iconActive": iconPath + "likeHL.png",
     "title": "互动",
     "extraStyle": "",
+    url: "",
   },
   {
     "icon": iconPath + "more.png",
     "iconActive": iconPath + "moreHL.png",
     "title": "设置",
     "extraStyle": "border:none;",
+    url: "",
   },
 ]
 
@@ -74,10 +78,14 @@ Page({
     if (options.isSigning == "true")
       isSigning = true
 
+    var url1 = "tabs[" + 1 + "].url";
+    var url2 = "tabs[" + 2 + "].url";
     that.setData({
       courseId: options.id,
       isSigning: isSigning,
-      name: options.name
+      name: options.name,
+      [url1]: "/pages/question_answer/question_index/question_index?courseId=" + options.id,
+      [url2]: "/pages/chat/chat?courseId=" + options.id + "&name=" + options.name,
     })
     if (isSigning)
       SQL.query('course', { _id: options.id }, function (res) {

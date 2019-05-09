@@ -145,11 +145,11 @@ Page({
   // },
   toCourse :function(e){
     var that =this;
-    var i = e.currentTarget.id
+    var i = e.currentTarget.id;
     if (that.data.courseListShow[i].createManId == that.data.userDataBaseInfo._id && that.data.power != app.globalData.powerMenu['student'] ){
       console.log("欢迎老师来上课")
       wx.navigateTo({
-        url: '../courseManage/courseManage?id=' + that.data.courseListShow[i]._id + "&isSigning=" + that.data.courseListShow[i].isSigning + ",&name=" + that.data.userDataBaseInfo.name,
+        url: '../courseManage/courseManage?id=' + that.data.courseListShow[i]._id + "&isSigning=" + that.data.courseListShow[i].isSigning + "&name=" + that.data.userDataBaseInfo.name,
       })
     }
     else{

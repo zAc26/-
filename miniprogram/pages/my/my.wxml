@@ -25,12 +25,21 @@
     <image class='member-icon'src='/static/images/quizzes.png'></image>
     <text class='member-text'>我的试卷库</text>
   </view>
-   
-  <!-- 我的收藏 -->
-  <view class='content-view'  bindtap='cart'>
-    <image class='member-icon'src='/static/images/collection.png'></image>
-    <text class='member-text'>我的收藏</text>
-  </view>
+  
+   <view wx:if="{{app.globalData.userPower == 0}}">
+    <!-- 广播消息 -->
+    <view class='content-view'  bindtap='sendMessage'>
+      <image class='member-icon'src='/static/images/collection.png'></image>
+      <text class='member-text'>广播消息</text>
+    </view>
+   </view>
+   <view wx:else>
+   <!-- 我的收藏 -->
+    <view class='content-view'  bindtap='cart'>
+      <image class='member-icon'src='/static/images/collection.png'></image>
+      <text class='member-text'>我的收藏</text>
+    </view>
+   </view>
 </view>
 
 
@@ -42,7 +51,7 @@
 <!-- 功能模块第二部分 -->
 <view class='content-two content-body'>
 
-                      
+
   <!-- 身份绑定 -->
   <view class='content-view' bindtap='attention'>
     <image class='member-icon' src='/static/images/id_bind.png'></image>

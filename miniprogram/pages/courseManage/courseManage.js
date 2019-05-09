@@ -3,31 +3,35 @@
 const SQL = require("../../utils/SQL.js");
 const app = getApp()
 const FCC = require("../../utils/FCC.js");
-var iconPath = "/static/icons/" 
+var iconPath = "/static/icons/"
 var tabs = [
   {
     "icon": iconPath + "mark.png",
     "iconActive": iconPath + "markHL.png",
     "title": "签到",
     "extraStyle": "",
+    "url": "",
   },
   {
     "icon": iconPath + "collect.png",
     "iconActive": iconPath + "collectHL.png",
     "title": "题库",
     "extraStyle": "",
+    "url": "",
   },
   {
     "icon": iconPath + "like.png",
     "iconActive": iconPath + "likeHL.png",
     "title": "互动",
     "extraStyle": "",
+    "url": "",
   },
   {
     "icon": iconPath + "more.png",
     "iconActive": iconPath + "moreHL.png",
     "title": "设置",
     "extraStyle": "border:none;",
+    "url": "",
   },
 ]
 Page({
@@ -40,7 +44,7 @@ Page({
     tabs: tabs,
     // 当前选中的标签
     currentTab: "tab1",
-    headTab:0,
+    headTab: 0,
     // 高亮的标签索引
     highLightIndex: "0",
     // 模态对话框样式 
@@ -48,43 +52,35 @@ Page({
     // 待新建的日记标题
     diaryTitle: "",
     categoryTabs: [{ name: '全部', selected: true, id: 0 }, { name: '已签到', selected: false, id: 1 }, { name: '未签到', selected: false, id: 2 }],
-    stuList:[],
+    stuList: [],
     stuListShow: [],
-    isSigning:false,
+    isSigning: false,
     isLoading: false,
     isdisabled: false,
-    signNum:0,
-     point : {},
-    messageList:[
-      { userId: 'sfsdfsdf', content: 'UI是对庵后' }, { userId:'XFh-aHffS3SWKN_d',content :'什么桂东成'}
+    signNum: 0,
+    point: {},
+    messageList: [
+      { userId: 'sfsdfsdf', content: 'UI是对庵后' }, { userId: 'XFh-aHffS3SWKN_d', content: '什么桂东成' }
     ],
     name: "",
   },
 
-// ----------------------------------------签到 
-  signIn :function(){
-      var that = this
+  // ----------------------------------------签到 
+  signIn: function () {
+    var that = this
 
-
-
-
-
-    if (!that.data.isSigning){  //发起签到
-
-      var result = getLoc(that)
-      if (!result) return
-      
+    if (!that.data.isSigning) {  //发起签到
+      var result = getLoc(that);
       that.setData({
         isLoading: true,
         isdisabled: true,
       })
-    SQL.update('course', that.data.courseId, {
-      'isSigning': !that.data.isSigning
-    })
-    initSign(that)
-  
+      SQL.update('course', that.data.courseId, {
+        'isSigning': !that.data.isSigning
+      })
+      initSign(that)
     }
-    else{    //关闭签到
+    else {    //关闭签到
       wx.showModal({
         title: '提示',
         content: '确定关闭签到？',
@@ -95,9 +91,10 @@ Page({
               isdisabled: true,
             })
             console.log('用户点击确定')
-            SQL.update('course', that.data.courseId, {  
+            SQL.update('course', that.data.courseId, {
               'isSigning': !that.data.isSigning
-            })
+            });
+
             wx.showToast({
               title: '关闭成功',
               icon: 'success',
@@ -109,7 +106,7 @@ Page({
                 isdisabled: false,
                 isSigning: !that.data.isSigning,
               })
-            },  500) //  //待调整
+            }, 500) //  //待调整
           } else if (res.cancel) {
             console.log('用户点击取消')
           }
@@ -121,29 +118,32 @@ Page({
 
   },
   //--------------------------------------------------
-      //-------------------------------设置
-delCourse :function(){
-  var that=this
-   wx.showModal({
-     title: '提示',
-     content: '确认删除该课程？（此操作无法撤回！）',
-     success: function (res) { 
-       if (res.confirm) { that.setData({isLoading: true, isdisabled: true, })
-              FCC.delCourseById(that.data.courseId)
-         wx.showToast({  title: '删除成功',  icon: 'success',duration: 1500
-         })
-         setTimeout(function () {
-           that.setData({isLoading: false,isdisabled: false
-           })
-           wx.navigateBack({ })
-         }, 3000) //  //待调整
+  //-------------------------------设置
+  delCourse: function () {
+    var that = this
+    wx.showModal({
+      title: '提示',
+      content: '确认删除该课程？（此操作无法撤回！）',
+      success: function (res) {
+        if (res.confirm) {
+          that.setData({ isLoading: true, isdisabled: true, })
+          FCC.delCourseById(that.data.courseId)
+          wx.showToast({
+            title: '删除成功', icon: 'success', duration: 1500
+          })
+          setTimeout(function () {
+            that.setData({
+              isLoading: false, isdisabled: false
+            })
+            wx.navigateBack({})
+          }, 3000) //  //待调整
 
-       }
-     },
-    //  fail: function (err) {  console.log("取消"+err)},
-   })
-},
-    //--------------------------------------------------
+        }
+      },
+      //  fail: function (err) {  console.log("取消"+err)},
+    })
+  },
+  //--------------------------------------------------
 
   // 点击tab项事件
   touchTab: function (event) {
@@ -157,30 +157,33 @@ delCourse :function(){
   },
   //**切换 */
   changeCategory(event) {
-    var that =this
-    var chid = parseInt(event.target.dataset.id) 
+    var that = this
+    var chid = parseInt(event.target.dataset.id)
     if (that.data.currentTab === chid) {
       return false
     }
     if (!that.data.isSigning) {
-        postError(that,"请先发起签到") 
-          return }
-    var list=[]
-    if (chid == 0)   list = that.data.stuList   //全部
-    else if (chid == 1){ //已签到
+      postError(that, "请先发起签到")
+      return
+    }
+    var list = []
+    if (chid == 0) list = that.data.stuList   //全部
+    else if (chid == 1) { //已签到
       for (var i = 0; i < that.data.stuList.length; i++)
         if (that.data.stuList[i].signIn[that.data.courseId])
-             list.push(that.data.stuList[i]) }
-    
-    else if (chid == 2)  {//未签到
-        for (var i = 0; i < that.data.stuList.length; i++)
-          if (!that.data.stuList[i].signIn[that.data.courseId])
-            list.push(that.data.stuList[i])}
+          list.push(that.data.stuList[i])
+    }
 
-    that.setData({ 
+    else if (chid == 2) {//未签到
+      for (var i = 0; i < that.data.stuList.length; i++)
+        if (!that.data.stuList[i].signIn[that.data.courseId])
+          list.push(that.data.stuList[i])
+    }
+
+    that.setData({
       headTab: chid,
-      stuListShow:list
-     })
+      stuListShow: list
+    })
 
   },
 
@@ -189,20 +192,24 @@ delCourse :function(){
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(options)
+    console.log(options)
     var that = this
     var isSigning = false
-    if (options.isSigning =="true")
-         isSigning = true
+    if (options.isSigning == "true")
+      isSigning = true
 
+    var url1 = "tabs[" + 1 + "].url";
+    var url2 = "tabs[" + 2 + "].url";
     that.setData({
       courseId: options.id,
       isSigning: isSigning,
-      name: options.name
+      name: options.name,
+      [url1]: "/pages/question_answer/question_index/question_index?courseId=" + options.id,
+      [url2]: "/pages/chat/chat?courseId=" + options.id + "&name=" + options.name,
     })
 
     refresh(that)
-    
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -214,8 +221,8 @@ delCourse :function(){
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that= this
-  
+    var that = this
+
   },
 
 
@@ -236,51 +243,64 @@ delCourse :function(){
 })
 // ///////////////////////////////////////////////////////////////////////////////////////////////
 
-function refresh(that){ ////刷新
-  console.log("！！！！！！",that.data.courseId);
-  
+function refresh(that) { ////刷新
+  console.log("！！！！！！", that.data.courseId);
+
   FCC.getStuByCourseId(that.data.courseId, function (res_list) {
-    var num=0;
+    var num = 0;
     // console.log(list)
-    for (var i = 0; i < res_list.length;i++){
+    for (var i = 0; i < res_list.length; i++) {
       // console.log(res_list[i].hasOwnProperty('signIn'),"<-")
-      if (res_list[i].hasOwnProperty('signIn')&&res_list[i].signIn.hasOwnProperty(that.data.courseId) && res_list[i].signIn[that.data.courseId]) { num++; }
+      if (res_list[i].hasOwnProperty('signIn') && res_list[i].signIn.hasOwnProperty(that.data.courseId) && res_list[i].signIn[that.data.courseId]) { num++; }
     }
 
     that.setData({
       stuList: res_list,
       stuListShow: res_list,
-      signNum:num,
-      headTab:0
+      signNum: num,
+      headTab: 0
     })
-  }) 
+  })
 
 }
 
-function initSign(that ){
-     var userList =that.data.stuList
-     var ziduan = that.data.courseId
-     for(var i = 0;i<userList.length;i++){
-       SQL.update('user', userList[i]._id,{
-         signIn:{
-           [ziduan] : false
-         }
-       })
-     }
+function initSign(that) {
+  var userList = that.data.stuList;
+  var ziduan = that.data.courseId;
+  for (var i = 0; i < userList.length; i++) {
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: 'changeYou',
+      // 传给云函数的参数
+      data: {
+        DB: 'user',
+        id: userList[i]._id,
+        DD: {
+          signIn: {
+            [ziduan]: false
+          }
+        }
+      },
+      success(res) {
+        console.log(res)
+      },
+      fail: console.error
+    })
+  }
   wx.showLoading({
     // title: '初始化签到列表',
     title: '正在获取位置',
   })
   setTimeout(function () {
     wx.hideLoading()
-   
-   that.setData({
-     isLoading: false,
-     isdisabled: false,
-     isSigning: !that.data.isSigning,
-   })
 
-  }, userList.length*200) //  //待调整
+    that.setData({
+      isLoading: false,
+      isdisabled: false,
+      isSigning: !that.data.isSigning,
+    })
+
+  }, userList.length * 200) //  //待调整
 }
 
 function postError(that, content) {
@@ -295,7 +315,7 @@ function postError(that, content) {
   }, 1000);
 }
 
-function getLoc(that){
+function getLoc(that) {
   //获取当前位置
   wx.getLocation({
     type: 'gcj02',// 默认为 wgs84 返回 gps 坐标，gcj02 返回可用wx.openLocation 的坐标
@@ -307,22 +327,21 @@ function getLoc(that){
         latitude: latitude,
         longitude: longitude
       };
-      console.log("获取定位成功",point)
+      console.log("获取定位成功", point)
       that.setData({
         point: point
       })
       SQL.update('course', that.data.courseId, {
         point: point
       })
-
-      return true
+      return true;
     }
-    ,fail(err){
-        wx.showModal({
-          title: '错误提示' ,
-          content: '定位失败，请检查是否允许小程序获取定位信息',
-        })
-        return false
+    , fail(err) {
+      wx.showModal({
+        title: '错误提示',
+        content: '定位失败，请检查是否允许小程序获取定位信息',
+      })
+      return false
     }
   })
 }
