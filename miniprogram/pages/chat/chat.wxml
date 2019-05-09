@@ -52,11 +52,10 @@
 
   <view class='inputRoom' style='bottom: {{inputBottom}}'>
     <!-- <image style='width: 7vw; margin-left: 3.2vw;' src='../../images/pic_icon.png' mode='widthFix'></image> -->
-    <input class='send' bindconfirm='sendClick' adjust-position='{{false}}' value="{{sendText}}" confirm-type='send' placeholder="请输入聊天内容.." bindinput='sendTextBind' cursor-spacing='140'></input>
+    <input class='send' bindconfirm='sendClick' adjust-position='{{false}}' value="{{sendText}}" confirm-type='send' placeholder="请输入聊天内容.." bindinput='sendTextBind' cursor-spacing='140' bindfocus='focus' bindblur='blur'></input>
 
     <view class="add" bindtap='increase'>+</view>
-<button  class="sendButton" type="primary"   size="small" button-hover="blue" bindconfirm='sendClick' bindtap='sendBtn' formType="reset">发送</button>
+    <button  class="sendButton" type="primary"   size="small" button-hover="blue" bindconfirm='sendClick' bindtap='sendBtn' formType="reset">发送</button>
   </view>
-  
- 
+
 </view>

@@ -1,0 +1,21 @@
+<view class="item-box">
+  <view class="items">
+    <view style='text-align:center;'>选择题</view>
+    <view wx:for="{{choiceArray}}" wx:key="{{_id}}" class="item">
+      <view bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}" style="{{item.txtStyle}}" class="inner txt" bindtap="choiceInput" id="{{item._id}}">
+        <image class="item-icon" mode="widthFix" src="../../../static/icons/编辑.png"></image>
+        {{index+1}}:{{item.question}}
+      </view>
+      <view data-index="{{index}}" catchtap='delChoice' class="inner del" id="{{item._id}}">删除</view>
+    </view>
+
+    <view style='text-align:center;'>简答题</view>
+    <view wx:for="{{questionArray}}" wx:key="{{_id}}" class="item">
+      <view bindtouchstart="touchS" bindtouchmove="touchM1" bindtouchend="touchE1" data-index="{{index}}" style="{{item.txtStyle}}" class="inner txt" bindtap="questionInput" id="{{item._id}}">
+        <image class="item-icon" mode="widthFix" src="../../../static/icons/编辑.png"></image>
+        {{index+1}}:{{item.question}}
+      </view>
+      <view data-index="{{index}}" class="inner del" catchtap='delQuestion' id="{{item._id}}">删除</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,7 @@
+<view style='text-align:center;'>简答题</view>
+<view wx:for="{{questionArray}}" wx:key="{{_id}}" class="item" data-index="{{index}}">
+    <view data-index="{{index}}" class="inner txt" bindtap="questionInput" id="{{item._id}}">
+        <image class="item-icon" mode="widthFix" src="../../../static/icons/编辑.png"></image>
+        {{index+1}}:{{item.question}}
+    </view>
+</view>

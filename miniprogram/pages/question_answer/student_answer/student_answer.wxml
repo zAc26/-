@@ -1,0 +1,30 @@
+<view class="question-form">
+    <view class="question-input-area">
+        <!-- 问题标题 -->
+        <view class="question-title-wrap">
+            <input class="question-title" placeholder="请输入课程章节" maxlength="40" placeholder-style="color:#b3b3b3;font-size:18px;" bindinput="title" value="{{title}}"></input>
+            <view class="title-input-counter">{{titleCount}}/40</view>
+        </view>
+        <!-- 问题正文 -->
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <textarea class="weui-textarea" placeholder="请输入提问的题目。" maxlength="500" placeholder-style="color:#b3b3b3;font-size:14px;" style="height: 12rem" bindinput="question" value="{{question}}" />
+                    <view class="weui-textarea-counter">{{questionCount}}/500</view>
+                </view>
+            </view>
+        </view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <textarea class="weui-textarea" placeholder="回答简答题。" maxlength="500" placeholder-style="color:#b3b3b3;font-size:14px;" style="height: 12rem" bindinput="answer" value="{{answer}}" />
+                    <view class="weui-textarea-counter">{{answerCount}}/500</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{!isAnswer}}">
+        <!-- 提交表单按钮 -->
+        <button class="weui-btn" type="primary" bindtap="submitForm">提交</button>
+    </view>
+</view>

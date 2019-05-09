@@ -1,0 +1,51 @@
+<view class="question-form">
+    <view class="question-input-area">
+        <!-- 问题正文 -->
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd" style='border-bottom: 1rpx solid #ccc;'>
+                    <textarea class="weui-textarea" placeholder="请输入提问的题目。" maxlength="500" placeholder-style="color:#b3b3b3;font-size:14px;" style="height: 5rem" bindinput="question" value="{{question}}" />
+                    <view class="weui-textarea-counter">{{questionCount}}/500</view>
+                </view>
+            </view>
+        </view>
+        <view class="weui-cells weui-cells_after-title" style='margin-top:30rpx;'>
+            <view class="weui-cell">
+                <view class="weui-cell__bd" style='border-bottom: 1rpx solid #ccc;'>
+                    <textarea class="weui-textarea" placeholder="A选项" maxlength="500" placeholder-style="color:#b3b3b3;font-size:14px;" style="height: 2rem" bindinput="answerA" value="{{answerA}}" />
+                </view>
+            </view>
+        </view>
+        <view class="weui-cells weui-cells_after-title" style='margin-top:30rpx;'>
+            <view class="weui-cell">
+                <view class="weui-cell__bd" style='border-bottom: 1rpx solid #ccc;'>
+                    <textarea class="weui-textarea" placeholder="B选项" maxlength="500" placeholder-style="color:#b3b3b3;font-size:14px;" style="height: 2rem" bindinput="answerB" value="{{answerB}}" />
+                </view>
+            </view>
+        </view>
+        <view class="weui-cells weui-cells_after-title" style='margin-top:30rpx;'>
+            <view class="weui-cell">
+                <view class="weui-cell__bd" style='border-bottom: 1rpx solid #ccc;'>
+                    <textarea class="weui-textarea" placeholder="C选项" maxlength="500" placeholder-style="color:#b3b3b3;font-size:14px;" style="height: 2rem" bindinput="answerC" value="{{answerC}}" />
+                </view>
+            </view>
+        </view>
+        <view class="weui-cells weui-cells_after-title" style='margin-top:30rpx;'>
+            <view class="weui-cell">
+                <view class="weui-cell__bd" style='border-bottom: 1rpx solid #ccc;'>
+                    <textarea class="weui-textarea" placeholder="D选项" maxlength="500" placeholder-style="color:#b3b3b3;font-size:14px;" style="height: 2rem" bindinput="answerD" value="{{answerD}}" />
+                </view>
+            </view>
+        </view>
+        <view>
+            <checkbox-group bindchange="checkboxgroupBindchange">
+                <label wx:for="{{checkboxs}}" wx:key="*this">
+                    <checkbox value="{{item.value}}" checked="{{item.checked}}">{{item.value}}</checkbox>
+                </label>
+            </checkbox-group>
+            <view style='color: red;'>正确答案为：{{answer}}</view>
+        </view>
+    </view>
+    <!-- 提交表单按钮 -->
+    <button class="weui-btn" type="primary" bindtap="submitForm">提交</button>
+</view>
